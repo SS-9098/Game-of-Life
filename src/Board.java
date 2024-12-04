@@ -8,8 +8,8 @@ public class Board extends JPanel
     {
         this.setSize(800, 800);
         this.setLayout(new GridLayout(100,100));
-        this.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
-        this.setBackground(Color.gray);
+        this.setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
+        this.setBackground(Colors.getBoardColor());
         this.setOpaque(true);
         this.setVisible(true);
 

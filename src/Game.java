@@ -40,11 +40,11 @@ public class Game implements ActionListener
                 {
                     if (state[i][j])
                     {
-                        cells[i][j].setBackground(java.awt.Color.gray);
+                        cells[i][j].setBackground(Colors.getDeadColor());
                         state[i][j] = false;
                     } else
                     {
-                        cells[i][j].setBackground(java.awt.Color.black);
+                        cells[i][j].setBackground(Colors.getAliveColor());
                         state[i][j] = true;
                     }
                 }
