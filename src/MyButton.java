@@ -3,12 +3,13 @@ package src;
 import javax.swing.*;
 import java.awt.*;
 
-public class Button extends JButton
+public class MyButton extends JButton
 {
-    Button()
+    MyButton()
     {
+        super();
         this.setBackground(Color.gray);
-        this.setBorder(BorderFactory.createLineBorder(Color.black));
+        this.setBorder(BorderFactory.createLineBorder(Color.darkGray, 1));
         this.setOpaque(true);
         this.setVisible(true);
     }
