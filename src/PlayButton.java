@@ -9,6 +9,7 @@ public class PlayButton
         JPanel panel = new JPanel();
         panel.setBackground(Colors.getBoardColor());
         panel.setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
+        panel.setPreferredSize(new Dimension(200, 100));
         panel.setLayout(new BorderLayout());
         panel.setOpaque(true);
         panel.setVisible(true);
@@ -16,18 +17,20 @@ public class PlayButton
     }
 
     public JButton playButton() {
-        JButton button = new JButton();
+        JButton button = new JButton(">");
         button.setBackground(Colors.getBoardColor());
         button.setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
+        button.setPreferredSize(new Dimension(100, 50));
         button.setOpaque(true);
         button.setVisible(true);
         return button;
     }
 
     public JButton next() {
-        JButton button = new JButton();
+        JButton button = new JButton("=>");
         button.setBackground(Colors.getBoardColor());
         button.setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
+        button.setPreferredSize(new Dimension(100, 50));
         button.setOpaque(true);
         button.setVisible(true);
         return button;

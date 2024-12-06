@@ -8,14 +8,20 @@ public class Game implements ActionListener
 {
     JFrame frame;
     JPanel board;
+    JPanel media;
+    JButton play, next, prev;
     JButton[][] cells;
     Boolean[][] state;
     void Initialize()
     {
+        PlayButton obj = new PlayButton();
         frame = new MyFrame();
         board = new Board();
         cells = new JButton[100][100];
         state = new Boolean[100][100];
+        media = obj.play();
+        next = obj.next();
+        play = obj.playButton();
         for (int i = 0; i < 100; i++)
         {
             for (int j = 0; j < 100; j++)
@@ -26,6 +32,9 @@ public class Game implements ActionListener
                 board.add(cells[i][j]);
             }
         }
+        media.add(play, "Center");
+        media.add(next, "East");
+        frame.add(media);
         frame.add(board);
     }
 
