@@ -18,17 +18,16 @@ public class PlayButton
 
     public JButton playButton() {
         JButton button = new JButton(">");
-        button.setBackground(Colors.getBoardColor());
-        button.setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
-        button.setPreferredSize(new Dimension(100, 50));
-        button.setOpaque(true);
-        button.setVisible(true);
-        button.setFocusable(false);
-        return button;
+        return getjButton(button);
     }
 
     public JButton next() {
         JButton button = new JButton("=>");
+        return getjButton(button);
+    }
+
+    private JButton getjButton(JButton button)
+    {
         button.setBackground(Colors.getBoardColor());
         button.setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
         button.setPreferredSize(new Dimension(100, 50));
