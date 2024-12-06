@@ -34,8 +34,8 @@ public class Game implements ActionListener
         }
         media.add(play, "Center");
         media.add(next, "East");
-        frame.add(media);
-        frame.add(board);
+        frame.add(media, "South");
+        frame.add(board, "Center");
     }
 
     @Override

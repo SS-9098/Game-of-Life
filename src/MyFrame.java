@@ -1,6 +1,7 @@
 package src;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MyFrame extends JFrame
 {
@@ -8,6 +9,7 @@ public class MyFrame extends JFrame
     {
         this.setTitle("Game of Life");
         this.setSize(900, 800);
+        this.setLayout(new BorderLayout());
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Colors.getBoardColor());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

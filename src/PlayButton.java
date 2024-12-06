@@ -23,6 +23,7 @@ public class PlayButton
         button.setPreferredSize(new Dimension(100, 50));
         button.setOpaque(true);
         button.setVisible(true);
+        button.setFocusable(false);
         return button;
     }
 
@@ -33,6 +34,7 @@ public class PlayButton
         button.setPreferredSize(new Dimension(100, 50));
         button.setOpaque(true);
         button.setVisible(true);
+        button.setFocusable(false);
         return button;
     }
 }
