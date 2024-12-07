@@ -8,6 +8,7 @@ public class Colors
     static Color border = Color.darkGray;
     static Color dead = Color.gray;
     static Color alive = Color.black;
+    static Color button = Color.black;
 
     public static Color getBoardColor() {
         return board;
@@ -23,5 +24,9 @@ public class Colors
 
     public static Color getAliveColor() {
         return alive;
+    }
+
+    public static Color getButtonColor() {
+        return button;
     }
 }

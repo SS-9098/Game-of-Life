@@ -26,11 +26,18 @@ public class PlayButton
         return getjButton(button);
     }
 
+    public JButton prev() {
+        JButton button = new JButton("<=");
+        return getjButton(button);
+    }
+
     private JButton getjButton(JButton button)
     {
-        button.setBackground(Colors.getBoardColor());
+        button.setBackground(Colors.getButtonColor());
         button.setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
         button.setPreferredSize(new Dimension(100, 50));
+        button.setForeground(Color.white);
+        button.setFont(new Font("Arial", Font.PLAIN, 20));
         button.setOpaque(true);
         button.setVisible(true);
         button.setFocusable(false);
