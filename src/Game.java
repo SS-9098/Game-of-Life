@@ -12,6 +12,7 @@ public class Game implements ActionListener
     JButton play, next, prev;
     JButton[][] cells;
     Boolean[][] state;
+
     void Initialize()
     {
         PlayButton obj = new PlayButton();
@@ -38,6 +39,7 @@ public class Game implements ActionListener
         media.add(prev, "West");
         frame.add(media, "South");
         frame.add(board, "Center");
+        frame.setVisible(true);
     }
 
     @Override
