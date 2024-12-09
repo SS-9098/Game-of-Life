@@ -13,6 +13,5 @@ public class MyFrame extends JFrame
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(Colors.getBoardColor());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setVisible(true);
     }
 }
