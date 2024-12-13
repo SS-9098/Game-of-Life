@@ -11,7 +11,7 @@ public class Game implements ActionListener
     JPanel media;
     JButton play, next, prev;
     JButton[][] cells;
-    boolean[][] state, stateCopy;
+    boolean[][] state;
     Timer main;
     int size;
     GameWorker gameWorker;
@@ -26,7 +26,6 @@ public class Game implements ActionListener
         board = new Board();
         cells = new JButton[size][size];
         state = new boolean[size][size];
-        stateCopy = new boolean[size][size];
         media = obj.play();
         prev = obj.prev();
         play = obj.playButton();
@@ -97,6 +96,7 @@ public class Game implements ActionListener
 
     public boolean[][] nextGen() // Moves 1 Generation Forward
     {
+        boolean[][] stateCopy = new boolean[size][size];
         for (int i = 0; i < size; i++) { // Copying the state of the cells
             System.arraycopy(state[i], 0, stateCopy[i], 0, size);
         }
@@ -138,6 +138,7 @@ public class Game implements ActionListener
         } else if (e.getSource() == next) // Next Button is clicked
         {
             state = nextGen(); // Move 1 generation forward
+
         } else // Setting initial state of cells
         {
             for (int i = 0; i < size; i++) {
