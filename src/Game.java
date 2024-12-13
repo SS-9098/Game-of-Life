@@ -17,7 +17,7 @@ public class Game implements ActionListener
 
     void Initialize()
     {
-        main = new Timer(10, this);
+        main = new Timer(100, this);
 
         PlayButton obj = new PlayButton();
         size = new Board().getGridSize();
@@ -74,18 +74,18 @@ public class Game implements ActionListener
         return neighbours;
     }
 
-    public boolean ChangeState(int i, int j)
+    public boolean ChangeState(int i, int j) // Cell should be Alive/Dead
     {
         int[][] neighbours = getNeighbours(i, j);
         int LiveCount = 0; // Number of live neighbours
-        for(int k = 0; k < 8; k++) {
+        for(int k = 0; k < 8; k++) // Counting the number of live neighbours
+        {
             if (neighbours[k][0] != -1 && neighbours[k][1] != -1) {
                 try {
                     if (state[neighbours[k][0]][neighbours[k][1]]) {
                         LiveCount++;
                     }
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    continue;
+                } catch (ArrayIndexOutOfBoundsException _) {
                 }
             }
         }
