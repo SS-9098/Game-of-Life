@@ -135,11 +135,12 @@ public class Game implements ActionListener
                 gameWorker = new GameWorker(); // Start the game
                 gameWorker.execute();
             }
-        } else if (e.getSource() == next) // Next Button is clicked
+        }
+        else if (e.getSource() == next) // Next Button is clicked
         {
             state = nextGen(); // Move 1 generation forward
-
-        } else // Setting initial state of cells
+        }
+        else // Setting initial state of cells
         {
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
@@ -162,7 +163,7 @@ public class Game implements ActionListener
         protected Void doInBackground() throws Exception {
             while (!isCancelled()) {
                 state = nextGen();
-                Thread.sleep(100);
+                Thread.sleep(30);
             }
             return null;
         }
