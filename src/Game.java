@@ -70,7 +70,6 @@ public class Game implements ActionListener
                 }
             }
         }
-
         return neighbours;
     }
 
@@ -80,13 +79,11 @@ public class Game implements ActionListener
         int LiveCount = 0; // Number of live neighbours
         for(int k = 0; k < 8; k++) // Counting the number of live neighbours
         {
-            if (neighbours[k][0] != -1 && neighbours[k][1] != -1) {
-                try {
-                    if (state[neighbours[k][0]][neighbours[k][1]]) {
-                        LiveCount++;
-                    }
-                } catch (ArrayIndexOutOfBoundsException _) {
+            try {
+                if (state[neighbours[k][0]][neighbours[k][1]]) {
+                    LiveCount++;
                 }
+            } catch (ArrayIndexOutOfBoundsException _) {
             }
         }
         if (state[i][j]) { // Cell is alive
@@ -118,6 +115,21 @@ public class Game implements ActionListener
 
                 if (main.isRunning()) // Game is running
                 {
+                    if (ChangeState(i, j)) {
+                        cells[i][j].setBackground(Colors.getAliveColor());
+                        state[i][j] = true;
+                    } else {
+                        cells[i][j].setBackground(Colors.getDeadColor());
+                        state[i][j] = false;
+                    }
+                }
+            }
+        }
+
+        if (e.getSource() == next) // Move 1 generation forward
+        {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
                     if (ChangeState(i, j)) {
                         cells[i][j].setBackground(Colors.getAliveColor());
                         state[i][j] = true;
