@@ -13,24 +13,26 @@ public class Game implements ActionListener
     JButton[][] cells;
     Boolean[][] state;
     Timer main;
+    int size;
 
     void Initialize()
     {
         main = new Timer(10, this);
 
         PlayButton obj = new PlayButton();
+        size = new Board().getGridSize();
         frame = new MyFrame();
         board = new Board();
-        cells = new JButton[100][100];
-        state = new Boolean[100][100];
+        cells = new JButton[size][size];
+        state = new Boolean[size][size];
         media = obj.play();
         prev = obj.prev();
         play = obj.playButton();
         next = obj.next();
 
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < size; i++)
         {
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j < size; j++)
             {
                 cells[i][j] = new MyButton();
                 state[i][j] = false;
@@ -54,9 +56,9 @@ public class Game implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        for (int i = 0; i < 100; i++) // Setting the state of the cells
+        for (int i = 0; i < size; i++) // Setting the state of the cells
         {
-            for (int j = 0; j < 100; j++)
+            for (int j = 0; j < size; j++)
             {
                 if (e.getSource() == cells[i][j] && !main.isRunning()) // Cell is clicked while the game is paused
                 {
