@@ -27,6 +27,7 @@ public class Game implements ActionListener
         prev = obj.prev();
         play = obj.playButton();
         next = obj.next();
+
         for (int i = 0; i < 100; i++)
         {
             for (int j = 0; j < 100; j++)
@@ -37,6 +38,11 @@ public class Game implements ActionListener
                 board.add(cells[i][j]);
             }
         }
+
+        prev.addActionListener(this);
+        play.addActionListener(this);
+        next.addActionListener(this);
+
         media.add(play, "Center");
         media.add(next, "East");
         media.add(prev, "West");
