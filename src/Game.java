@@ -11,7 +11,7 @@ public class Game implements ActionListener
     JPanel media;
     JButton play, next, prev;
     JButton[][] cells;
-    Boolean[][] state;
+    boolean[][] state;
     Timer main;
     int size;
 
@@ -24,7 +24,7 @@ public class Game implements ActionListener
         frame = new MyFrame();
         board = new Board();
         cells = new JButton[size][size];
-        state = new Boolean[size][size];
+        state = new boolean[size][size];
         media = obj.play();
         prev = obj.prev();
         play = obj.playButton();
@@ -93,6 +93,21 @@ public class Game implements ActionListener
         }
     }
 
+    public boolean[][] nextGen(boolean[][] state)
+    {
+        boolean[][] stateCopy = new boolean[size][size];
+        for (int i = 0; i < size; i++) { // Copying the state of the cells
+            System.arraycopy(state[i], 0, stateCopy[i], 0, size);
+        }
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                stateCopy[i][j] = ChangeState(i, j);
+            }
+        }
+        return stateCopy;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e)
     {
@@ -128,14 +143,13 @@ public class Game implements ActionListener
 
         if (e.getSource() == next) // Move 1 generation forward
         {
+            state = nextGen(state);
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
-                    if (ChangeState(i, j)) {
+                    if (state[i][j]) {
                         cells[i][j].setBackground(Colors.getAliveColor());
-                        state[i][j] = true;
                     } else {
                         cells[i][j].setBackground(Colors.getDeadColor());
-                        state[i][j] = false;
                     }
                 }
             }
