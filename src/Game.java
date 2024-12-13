@@ -14,6 +14,7 @@ public class Game implements ActionListener
     boolean[][] state, stateCopy;
     Timer main;
     int size;
+    GameWorker gameWorker;
 
     void Initialize()
     {
@@ -94,7 +95,7 @@ public class Game implements ActionListener
         }
     }
 
-    public boolean[][] nextGen()
+    public boolean[][] nextGen() // Moves 1 Generation Forward
     {
         for (int i = 0; i < size; i++) { // Copying the state of the cells
             System.arraycopy(state[i], 0, stateCopy[i], 0, size);
@@ -121,45 +122,48 @@ public class Game implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent e)
-    {
-        for (int i = 0; i < size; i++) // Setting the state of the cells
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == play) // Play Button is clicked
         {
-            for (int j = 0; j < size; j++)
-            {
-                if (e.getSource() == cells[i][j] && !main.isRunning()) // Cell is clicked while the game is paused
-                {
-                    if (state[i][j])
-                    {
-                        cells[i][j].setBackground(Colors.getDeadColor());
-                        state[i][j] = false;
-                    } else
-                    {
-                        cells[i][j].setBackground(Colors.getAliveColor());
-                        state[i][j] = true;
-                    }
-                }
-
-                if (main.isRunning()) // Game is running
-                {
-                    state = nextGen();
-                }
-            }
-        }
-
-        if (e.getSource() == next) // Move 1 generation forward
-        {
-            state = nextGen();
-        }
-
-        if (e.getSource() == play) // Play button is clicked
-        {
-            if (main.isRunning()) {
+            if (main.isRunning()) { // Game is running
                 main.stop();
+                if (gameWorker != null) {
+                    gameWorker.cancel(true); // Stop the game
+                }
             } else {
                 main.start();
+                gameWorker = new GameWorker(); // Start the game
+                gameWorker.execute();
+            }
+        } else if (e.getSource() == next) // Next Button is clicked
+        {
+            state = nextGen(); // Move 1 generation forward
+        } else // Setting initial state of cells
+        {
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (e.getSource() == cells[i][j] && !main.isRunning()) {
+                        if (state[i][j]) {
+                            cells[i][j].setBackground(Colors.getDeadColor());
+                            state[i][j] = false;
+                        } else {
+                            cells[i][j].setBackground(Colors.getAliveColor());
+                            state[i][j] = true;
+                        }
+                    }
+                }
             }
         }
+    }
 
+    private class GameWorker extends SwingWorker<Void, Void> {
+        @Override
+        protected Void doInBackground() throws Exception {
+            while (!isCancelled()) {
+                state = nextGen();
+                Thread.sleep(100);
+            }
+            return null;
+        }
     }
 }
