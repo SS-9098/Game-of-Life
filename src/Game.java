@@ -11,13 +11,13 @@ public class Game implements ActionListener
     JPanel media;
     JButton play, next, prev;
     JButton[][] cells;
-    boolean[][] state;
+    boolean[][] state, stateCopy;
     Timer main;
     int size;
 
     void Initialize()
     {
-        main = new Timer(100, this);
+        main = new Timer(1000, this);
 
         PlayButton obj = new PlayButton();
         size = new Board().getGridSize();
@@ -25,6 +25,7 @@ public class Game implements ActionListener
         board = new Board();
         cells = new JButton[size][size];
         state = new boolean[size][size];
+        stateCopy = new boolean[size][size];
         media = obj.play();
         prev = obj.prev();
         play = obj.playButton();
@@ -93,9 +94,8 @@ public class Game implements ActionListener
         }
     }
 
-    public boolean[][] nextGen(boolean[][] state)
+    public boolean[][] nextGen()
     {
-        boolean[][] stateCopy = new boolean[size][size];
         for (int i = 0; i < size; i++) { // Copying the state of the cells
             System.arraycopy(state[i], 0, stateCopy[i], 0, size);
         }
@@ -105,6 +105,18 @@ public class Game implements ActionListener
                 stateCopy[i][j] = ChangeState(i, j);
             }
         }
+
+        for (int i = 0; i < size; i++) // Repainting cells after moving 1 generation
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (stateCopy[i][j])
+                    cells[i][j].setBackground(Colors.getAliveColor());
+                else
+                    cells[i][j].setBackground(Colors.getDeadColor());
+            }
+        }
+
         return stateCopy;
     }
 
@@ -130,29 +142,14 @@ public class Game implements ActionListener
 
                 if (main.isRunning()) // Game is running
                 {
-                    if (ChangeState(i, j)) {
-                        cells[i][j].setBackground(Colors.getAliveColor());
-                        state[i][j] = true;
-                    } else {
-                        cells[i][j].setBackground(Colors.getDeadColor());
-                        state[i][j] = false;
-                    }
+                    state = nextGen();
                 }
             }
         }
 
         if (e.getSource() == next) // Move 1 generation forward
         {
-            state = nextGen(state);
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    if (state[i][j]) {
-                        cells[i][j].setBackground(Colors.getAliveColor());
-                    } else {
-                        cells[i][j].setBackground(Colors.getDeadColor());
-                    }
-                }
-            }
+            state = nextGen();
         }
 
         if (e.getSource() == play) // Play button is clicked
