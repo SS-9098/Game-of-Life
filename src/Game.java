@@ -54,6 +54,16 @@ public class Game implements ActionListener
         frame.setVisible(true);
     }
 
+    void reset() // Set all cells to Dead
+    {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                state[i][j] = false;
+                cells[i][j].setBackground(Colors.getDeadColor());
+            }
+        }
+    }
+
     public int[][] getNeighbours(int i, int j)
     {
         int[][] neighbours = new int[8][2];
@@ -123,6 +133,7 @@ public class Game implements ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if (e.getSource() == play) // Play Button is clicked
         {
             if (main.isRunning()) { // Game is running
@@ -139,6 +150,16 @@ public class Game implements ActionListener
         else if (e.getSource() == next) // Next Button is clicked
         {
             state = nextGen(); // Move 1 generation forward
+        }
+        else if (e.getSource() == prev) // Prev Button is clicked
+        {
+            if (main.isRunning()) { // Game is running
+                main.stop();
+                if (gameWorker != null) {
+                    gameWorker.cancel(true); // Stop the game
+                }
+            }
+            reset();
         }
         else // Setting initial state of cells
         {
