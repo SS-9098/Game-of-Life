@@ -1,6 +1,7 @@
 package src;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,10 +11,11 @@ public class Game implements ActionListener
     JPanel board;
     JPanel media;
     JButton play, next, prev;
+    JLabel Generation_count;
     JButton[][] cells;
     boolean[][] state;
     Timer main;
-    int size;
+    int size, generation;
     GameWorker gameWorker;
 
     void Initialize()
@@ -21,6 +23,7 @@ public class Game implements ActionListener
         main = new Timer(1000, this);
 
         PlayButton obj = new PlayButton();
+        Generation_count = new JLabel("Generation: 0");
         size = new Board().getGridSize();
         frame = new MyFrame();
         board = new Board();
@@ -30,6 +33,9 @@ public class Game implements ActionListener
         prev = obj.prev();
         play = obj.playButton();
         next = obj.next();
+
+        Generation_count.setPreferredSize(new Dimension(100, 50));
+        Generation_count.setFont(new Font("Arial", Font.BOLD, 20));
 
         for (int i = 0; i < size; i++)
         {
@@ -49,6 +55,7 @@ public class Game implements ActionListener
         media.add(play, "Center");
         media.add(next, "East");
         media.add(prev, "West");
+        frame.add(Generation_count, "North");
         frame.add(media, "South");
         frame.add(board, "Center");
         frame.setVisible(true);
@@ -184,7 +191,7 @@ public class Game implements ActionListener
         protected Void doInBackground() throws Exception {
             while (!isCancelled()) {
                 state = nextGen();
-                Thread.sleep(30);
+                Thread.sleep(new Main().getPlay_Speed());
             }
             return null;
         }
