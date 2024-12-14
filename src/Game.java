@@ -37,16 +37,15 @@ public class Game implements ActionListener
         Generation_count.setPreferredSize(new Dimension(100, 50));
         Generation_count.setFont(new Font("Arial", Font.BOLD, 20));
 
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 cells[i][j] = new MyButton();
-                state[i][j] = false;
                 cells[i][j].addActionListener(this);
                 board.add(cells[i][j]);
             }
         }
+
+        reset();
 
         prev.addActionListener(this);
         play.addActionListener(this);
@@ -63,6 +62,8 @@ public class Game implements ActionListener
 
     void reset() // Set all cells to Dead
     {
+        generation = 0;
+        Generation_count.setText("Generation: 0");
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 state[i][j] = false;
@@ -134,6 +135,9 @@ public class Game implements ActionListener
                     cells[i][j].setBackground(Colors.getDeadColor());
             }
         }
+
+        generation++;
+        Generation_count.setText("Generation: " + generation);
 
         return stateCopy;
     }
