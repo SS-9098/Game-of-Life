@@ -13,6 +13,7 @@ _OR_
 - Click Play Button to automatically simulate generations
 - Click Next Button to move 1 generation forward
 - Click Prev Button to reset the board
+- Change Playback speed by changing `Play_Speed` variable in `src/main.java`
 
 ---
 >[!IMPORTANT]
