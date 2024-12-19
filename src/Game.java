@@ -183,6 +183,7 @@ public class Game implements ActionListener
                 if (gameWorker != null) {
                     gameWorker.cancel(true); // Stop the game
                 }
+                BorderIsVisible(true);
             }
             reset();
         }
