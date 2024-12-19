@@ -72,7 +72,7 @@ public class Game implements ActionListener
         }
     }
 
-    void BorderIsVisible(boolean b) // Set Border of cells to Visible/Invisible
+    public void BorderIsVisible(boolean b) // Set Border of cells to Visible/Invisible
     {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -164,10 +164,12 @@ public class Game implements ActionListener
                 if (gameWorker != null) {
                     gameWorker.cancel(true); // Stop the game
                 }
+                BorderIsVisible(true);
             } else {
                 main.start();
                 gameWorker = new GameWorker(); // Start the game
                 gameWorker.execute();
+                BorderIsVisible(false);
             }
         }
         else if (e.getSource() == next) // Next Button is clicked
