@@ -72,6 +72,18 @@ public class Game implements ActionListener
         }
     }
 
+    void BorderIsVisible(boolean b) // Set Border of cells to Visible/Invisible
+    {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if(b)
+                    cells[i][j].setBorder(BorderFactory.createLineBorder(Colors.getBorderColor(), 1));
+                else
+                    cells[i][j].setBorder(BorderFactory.createEmptyBorder());
+            }
+        }
+    }
+
     public int[][] getNeighbours(int i, int j)
     {
         int[][] neighbours = new int[8][2];
