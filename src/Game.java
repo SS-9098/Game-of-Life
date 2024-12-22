@@ -84,7 +84,7 @@ public class Game implements ActionListener
         }
     }
 
-    public int[][] getNeighbours(int i, int j)
+    public int[][] getNeighbours(int i, int j) // Returns 8 cells surrounding the cell at (i,j)
     {
         int[][] neighbours = new int[8][2];
         int k = 0;
@@ -114,8 +114,7 @@ public class Game implements ActionListener
                 if (state[neighbours[k][0]][neighbours[k][1]]) {
                     LiveCount++;
                 }
-            } catch (ArrayIndexOutOfBoundsException _) {
-            }
+            } catch (ArrayIndexOutOfBoundsException _) {}
         }
         if (state[i][j]) { // Cell is alive
             return LiveCount == 2 || LiveCount == 3;
@@ -155,7 +154,8 @@ public class Game implements ActionListener
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
 
         if (e.getSource() == play) // Play Button is clicked
         {
@@ -187,7 +187,7 @@ public class Game implements ActionListener
             }
             reset();
         }
-        else // Setting initial state of cells
+        else // Changing state of cells through user input
         {
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
@@ -205,12 +205,13 @@ public class Game implements ActionListener
         }
     }
 
-    private class GameWorker extends SwingWorker<Void, Void> {
+    private class GameWorker extends SwingWorker<Void, Void> // Thread to move generations
+    {
         @Override
         protected Void doInBackground() throws Exception {
             while (!isCancelled()) {
                 state = nextGen();
-                Thread.sleep(new Main().getPlay_Speed());
+                Thread.sleep(new Main().getPlay_Speed()); // Delay between each generation
             }
             return null;
         }
