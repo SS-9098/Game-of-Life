@@ -43,4 +43,15 @@ public class PlayButton
         button.setFocusable(false);
         return button;
     }
+
+    public JCheckBox borderSwitch() {
+        JCheckBox checkBox = new JCheckBox("Border", true);
+        checkBox.setBackground(Colors.getBoardColor());
+        checkBox.setForeground(Color.white);
+        checkBox.setFont(new Font("Arial", Font.PLAIN, 20));
+        checkBox.setOpaque(true);
+        checkBox.setVisible(true);
+        checkBox.setFocusable(false);
+        return checkBox;
+    }
 }
