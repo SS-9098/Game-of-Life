@@ -190,6 +190,10 @@ public class Game implements ActionListener
             }
             reset();
         }
+        else if (e.getSource() == borderSwitch) // Border Switch is clicked
+        {
+            BorderIsVisible(borderSwitch.isSelected());
+        }
         else // Changing state of cells through user input
         {
             for (int i = 0; i < size; i++) {
