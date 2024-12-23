@@ -38,6 +38,7 @@ public class Game implements ActionListener
         Generation_count.setPreferredSize(new Dimension(200, 50));
         Generation_count.setFont(new Font("Arial", Font.BOLD, 20));
         borderSwitch = obj.borderSwitch();
+        borderSwitch.addActionListener(this);
         Panel topPanel = new Panel(new BorderLayout());
         topPanel.add(Generation_count, "West");
         topPanel.add(borderSwitch, "East");
@@ -169,12 +170,10 @@ public class Game implements ActionListener
                 if (gameWorker != null) {
                     gameWorker.cancel(true); // Stop the game
                 }
-                BorderIsVisible(true);
             } else {
                 main.start();
                 gameWorker = new GameWorker(); // Start the game
                 gameWorker.execute();
-                BorderIsVisible(false);
             }
         }
         else if (e.getSource() == next) // Next Button is clicked
@@ -188,7 +187,6 @@ public class Game implements ActionListener
                 if (gameWorker != null) {
                     gameWorker.cancel(true); // Stop the game
                 }
-                BorderIsVisible(true);
             }
             reset();
         }
