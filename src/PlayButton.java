@@ -47,9 +47,8 @@ public class PlayButton
     public JCheckBox borderSwitch() {
         JCheckBox checkBox = new JCheckBox("Border", true);
         checkBox.setBackground(Colors.getBoardColor());
-        checkBox.setForeground(Color.white);
-        checkBox.setFont(new Font("Arial", Font.PLAIN, 20));
-        checkBox.setOpaque(true);
+        checkBox.setFont(new Font("Arial", Font.BOLD, 20));
+        checkBox.setOpaque(false);
         checkBox.setVisible(true);
         checkBox.setFocusable(false);
         return checkBox;
