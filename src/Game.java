@@ -39,7 +39,7 @@ public class Game implements ActionListener
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                cells[i][j] = new MyButton();
+                cells[i][j] = new CellButton();
                 cells[i][j].addActionListener(this);
                 board.add(cells[i][j]);
             }

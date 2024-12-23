@@ -2,9 +2,9 @@ package src;
 
 import javax.swing.*;
 
-public class MyButton extends JButton
+public class CellButton extends JButton
 {
-    MyButton()
+    CellButton()
     {
         super();
         this.setBackground(Colors.getBoardColor());
