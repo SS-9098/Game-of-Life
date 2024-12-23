@@ -12,6 +12,7 @@ public class Game implements ActionListener
     JPanel media;
     JButton play, next, prev;
     JLabel Generation_count;
+    JCheckBox borderSwitch;
     JButton[][] cells;
     boolean[][] state;
     Timer main;
@@ -34,8 +35,12 @@ public class Game implements ActionListener
         play = obj.playButton();
         next = obj.next();
 
-        Generation_count.setPreferredSize(new Dimension(100, 50));
+        Generation_count.setPreferredSize(new Dimension(200, 50));
         Generation_count.setFont(new Font("Arial", Font.BOLD, 20));
+        borderSwitch = obj.borderSwitch();
+        Panel topPanel = new Panel(new BorderLayout());
+        topPanel.add(Generation_count, "West");
+        topPanel.add(borderSwitch, "East");
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
@@ -54,7 +59,7 @@ public class Game implements ActionListener
         media.add(play, "Center");
         media.add(next, "East");
         media.add(prev, "West");
-        frame.add(Generation_count, "North");
+        frame.add(topPanel, "North");
         frame.add(media, "South");
         frame.add(board, "Center");
         frame.setVisible(true);
